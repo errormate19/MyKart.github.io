@@ -1,0 +1,344 @@
+{
+    "problem_type": "mockup-06nn-001-003",
+    "subtype1": "",
+    "subtype2": "",
+    "subtype3": "",
+    "example_problem_info": {
+        "question_text": "<p>Graph the opposite of `2 3/4` on the number line.</p>",
+        "mpu_output": {
+            "num": "2 3/4"
+        }
+    },
+    "steps": [
+        {
+            "type": "info",
+            "library_step_id": "step1_preamble",
+            "problem_step_id": "1_preamble",
+            "next_steps": [
+                {
+                    "condition": "True",
+                    "next_step_id": "step1"
+                }
+            ],
+            "input_variables": [],
+            "derived_variables": [],
+            "user_input_variables": [],
+            "info": [
+                "{{utils.mockup_hyperlink('Opposite')}} numbers are the <b>same distance from zero</b>."
+            ],
+            "preview":{
+                "preview_step":[
+                ],
+                "preview_answer":""
+            }
+        },
+        {
+            "type": "inputProcessor",
+            "library_step_id": "step1",
+            "problem_step_id": "1",
+            "next_steps": [
+                {
+                    "condition": "True",
+                    "next_step_id": "step2_preamble"
+                } 
+            ],
+            "input_variables": [],
+            "derived_variables": [
+                {
+                    "name": "num_sign",
+                    "type": "str",
+                    "expression": "{% if utils.number(mpu.num)<0 %}negative{% else %}positive{% endif %}"
+                },
+                {
+                    "name": "opp_sign",
+                    "type": "str",
+                    "expression": "{% if utils.number(mpu.num)>0 %}negative{% else %}positive{% endif %}"
+                },
+                {
+                    "name": "num_val",
+                    "type": "str",
+                    "expression": "{{mpu.num}}"
+                },
+                {
+                    "name": "is_mixed",
+                    "type": "bool",
+                    "expression": "{{utils.verifyMixedNumberFormat(num_val)}}"
+                },
+                {
+                    "name": "is_fraction",
+                    "type": "bool",
+                    "expression": "{{utils.is_fraction(num_val)}}"
+                },
+                {
+                    "name": "numer",
+                    "type": "str",
+                    "expression": "{% if is_fraction %}{{utils.get_numerator_from_fraction(num_val)}}{% endif %}"
+                },
+                {
+                    "name": "denom",
+                    "type": "str",
+                    "expression": "{% if is_fraction %}{{utils.get_denominator_from_fraction(num_val)}}{% else %}1{% endif %}"
+                },
+                {
+                    "name": "num_fraction",
+                    "type": "str",
+                    "expression":"{% if is_fraction %}{{utils.number(numer)/utils.number(denom)}}{% else %}{{num_val}}{% endif %}"
+                },
+
+                {
+                    "name": "improper",
+                    "type": "str",
+                    "expression": "{% if is_mixed %}{{utils.getFractionFromMixedNumber(num_val)}}{% else %}{{num_val}}{% endif %}"
+                },
+                {
+                    "name": "numerator",
+                    "type": "str",
+                    "expression": "{{utils.get_numerator_from_fraction(improper)}}"
+                },
+                {
+                    "name": "denominator",
+                    "type": "str",
+                    "expression": "{% if is_mixed %}{{utils.get_denominator_from_fraction(improper)}}{% else %}1{% endif %}"
+                },
+                {
+                    "name": "denominator_int",
+                    "type": "number",
+                    "expression": "{{utils.to_int(denominator)}}"
+                },
+                {
+                    "name": "whole",
+                    "type": "str",
+                    "expression": "{% if is_mixed%}{{utils.math_floor(utils.eval(improper))}}{% endif %}"
+                },
+                {
+                    "name": "fraction_num_val",
+                    "type": "str",
+                    "expression": "{% if is_mixed%}{{utils.modulo(numerator,denominator)}}{% endif %}"
+                },
+                {
+                    "name": "num_value",
+                    "type": "str",
+                    "expression": "{% if is_mixed %}{{utils.sum_two_num(whole,fraction_num_val)}}{% endif %}"
+                },
+                {
+                    "name": "num_int",
+                    "type": "str",
+                    "expression": "{%  is_mixed %}{{num_value}}{% else %}{{num_fraction}}{% endif %}"
+                }
+                
+            
+            ],
+            "user_input_variables": [
+                {
+                    "name": "input_step1",
+                    "type": "str"
+                }
+            ],
+            "input_prompt": "Would you expect the opposite of {{mpu.num}} to be positive or negative?",
+            "input_request": "Opposite of {{mpu.num}} is:\n{{utils.create_dropdown_selection(data_name='input_step1', items=['positive', 'negative'], data_type='text')}}",
+            "preview": {
+                "preview_step": [],
+                "preview_answer": ""
+            },
+            "general_hints": [
+                {
+                    "hint_code": "GH1",
+                    "hint_content": [
+                        {
+                            "condition": "True",
+                            "value": [
+                                "The {{utils.hyperlink('opposite')}} of {{mpu.num}} is the same distance from zero on the other side."
+                            ],
+                            "example_value_condition": "True",
+                            "example_values": [
+                                "hint"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "hint_code": "GH2",
+                    "hint_content": [
+                        {
+                            "condition": "True",
+                            "value": [
+                                "The {{utils.hyperlink('opposite')}} of {{mpu.num}} is the same distance from zero on the other side."
+                            ],
+                            "example_value_condition": "True",
+                            "example_values": [
+                                {
+                                    "input_step1": ""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "full_answer": [
+                "The {{utils.hyperlink('opposite')}} of {{mpu.num}} is the same distance from zero on the other side.\nThis means it will have the opposite sign.",
+                "Opposite of {{mpu.num}} is:\n {{opp_sign}}"
+            ],
+            "expected_answer": {
+                "input_step1": {
+                    "expected_value": "{{opp_sign}}",
+                    "condition": "{{utils.string_match(input_dict['input_step1'], opp_sign)}}"
+                }
+            },
+            "input_dependent_hints": [
+                {
+                    "hint_code": "IDH1",
+                    "misconception": "Misidentifies the sign of a value from a verbal description",
+                    "hint_content": [
+                        {
+                            "condition": "{{utils.string_match(input_dict['input_step1'],num_sign )}}",
+                            "value": [
+                                "The {{utils.hyperlink('opposite')}} of {{mpu.num}} is the same distance from zero on the other side.\nThis means it will have the opposite sign."
+                            ],
+                            "example_value_condition": "True",
+                            "example_values": [
+                                {
+                                    "input_step1": "{{num_sign}}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "info",
+            "library_step_id": "step2_preamble",
+            "problem_step_id": "2_preamble",
+            "next_steps": [
+                {
+                    "condition": "True",
+                    "next_step_id": "step2"
+                }
+            ],
+            "input_variables": [],
+            "derived_variables": [],
+            "user_input_variables": [],
+            "info": [
+                "{{utils.hyperlink('Opposite')}} numbers are the same distance from `0`, but on the other side."
+            ],
+
+            "preview":{
+                "preview_step":[
+                ],
+                "preview_answer":""
+            }
+        },
+        {
+            "type": "inputProcessor",
+            "library_step_id": "step2",
+            "problem_step_id": "2",
+            "next_steps": [],
+            "input_variables": [],
+            "derived_variables": [],
+            "user_input_variables": [{
+                    "name": "1",
+                    "type": "str"
+                }
+            ],
+            "input_prompt": "Graph the {{utils.hyperlink('opposite')}} of {{num_val}} on the number line.",
+            "input_request": "<NumberLine data-props='{  \"min_scale\": -,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\": 2.75    }  ]}'></NumberLine >'></NumberLine >",
+            "direct_input": {
+                "direct_input_prompt": "<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\": 2.75    }  ]}'></NumberLine >",
+                "direct_input_prompt_filled": "<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\": 2.75    }  ]}</NumberLine >"
+            },
+            "preview": {
+                "preview_step": [
+                    ""
+                ],
+                "preview_answer": ""
+            },
+            "general_hints": [{
+                    "hint_code": "GH1",
+                    "hint_content": [{
+                        "condition": "True",
+                        "value": [
+                            "<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 0    },    {      \"id\": 2,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 2.75    }  ],  \"line_arrows\": [    {      \"start_point_id\": 1,      \"end_point_id\": 2,      \"label\": \"2 ¾\"    },    {      \"start_point_id\": 2,      \"end_point_id\": 1    }  ],  \"point_arrows\": null}'></NumberLine >\nThe opposite of `2 3/4` is negative and the same distance away from `0`."
+                        ],
+                        "example_value_condition": "True",
+                        "example_values": [
+                            "hint"
+                        ]
+                    }]
+                },
+                {
+                    "hint_code": "GH2",
+                    "hint_content": [{
+                        "condition": "True",
+                        "value": [
+                            "The opposite of `2 3/4` is the number that is `2 3/4` units to the left of `0`.\n<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 0    },    {      \"id\": 2,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 2.75    },    {      \"id\": 3,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": false,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": -2.75    }  ],  \"line_arrows\": [    {      \"start_point_id\": 1,      \"end_point_id\": 2,      \"label\": \"2 ¾\"    },    {      \"start_point_id\": 2,      \"end_point_id\": 1    },    {      \"start_point_id\": 1,      \"end_point_id\": 3,      \"label\": \"2 ¾\"    },    {      \"start_point_id\": 3,      \"end_point_id\": 1    }  ],  \"point_arrows\": null}'></NumberLine >"
+                        ],
+                        "example_value_condition": "True",
+                        "example_values": [{
+                            "1": "dummy"
+                        }]
+                    }]
+                }
+            ],
+            "full_answer": [
+                "<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 0    },    {      \"id\": 2,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 2.75    },    {      \"id\": 3,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": -2.75    }  ],  \"line_arrows\": [    {      \"start_point_id\": 1,      \"end_point_id\": 2,      \"label\": \"2 ¾\"    },    {      \"start_point_id\": 2,      \"end_point_id\": 1    },    {      \"start_point_id\": 1,      \"end_point_id\": 3,      \"label\": \"2 ¾\"    },    {      \"start_point_id\": 3,      \"end_point_id\": 1    }  ],  \"point_arrows\": null}'></NumberLine >\nThe opposite of `2 3/4` is the number that is `2 3/4` units to the left of `0`.",
+                "<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"value\": -2.75,      \"show_point\": true,      \"point_color\": \"#377CF6\",      \"highlight_point\": true    },    {      \"id\": 2,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 2.75    }  ]}'></NumberLine >"
+            ],
+            "expected_answer": {
+                "1": {
+                    "expected_value": "{value:-2.75,open_point:false}",
+                    "condition": "{{ utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.75,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.75,'open_point':true}).replace('\"', '').replace(' ', '') ) }}"
+                }
+            },
+            "input_dependent_hints": [
+                {
+                    "hint_code": "IDH1",
+                    "misconception": "Plots 0 to represent the opposite of a nonzero number",
+                    "hint_content": [
+                        {
+                            "condition": "{{ utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':0,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':0,'open_point':true}).replace('\"', '').replace(' ', '') ) }}",
+                            "value": [
+                                "`0` is not the opposite of `2 3/4`.\nMove `2 3/4` units to the left of `0`."
+                            ],
+                            "example_value_condition": "True",
+                            "example_values": [
+                                {
+                                    "1": "{value:0,open_point:false}"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "hint_code": "IDH2",
+                    "misconception": "Misidentifies where opposite value lies on the number line",
+                    "hint_content": [
+                        {
+                            "condition": "{{ (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-0.25,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-0.25,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-0.5,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-0.5,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-0.75,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-0.75,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1.25,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1.25,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1.5,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1.5,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1.75,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-1.75,'open_point':true}).replace('\"', '').replace(' ', '') )) }}",
+                            "value": [
+                                "You're correct, the opposite of `2 3/4` is negative.\nThe opposite will lie between `-2` and `-3`."
+                            ],
+                            "example_value_condition": "True",
+                            "example_values": [
+                                {
+                                    "1": "{value:-0.5,open_point:false}"
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "{{ (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.25,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.25,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.5,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.5,'open_point':true}).replace('\"', '').replace(' ', '') )) or (utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-3,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-3,'open_point':true}).replace('\"', '').replace(' ', '') )) }}",
+                            "value": [
+                                "You're correct that the opposite of `2 3/4` will be between `-2` and `-3`.\nIt should be exactly `2 3/4` units to the left of `0`.\n<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 0    },    {      \"id\": 2,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 2.75    },    {      \"id\": 3,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": false,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": -2.75    }  ],  \"line_arrows\": [    {      \"start_point_id\": 1,      \"end_point_id\": 2,      \"label\": \"2 ¾\"    },    {      \"start_point_id\": 2,      \"end_point_id\": 1    },    {      \"start_point_id\": 1,      \"end_point_id\": 3,      \"label\": \"2 ¾\"    },    {      \"start_point_id\": 3,      \"end_point_id\": 1    }  ],  \"point_arrows\": null}'></NumberLine >"
+                            ],
+                            "example_value_condition": "True",
+                            "example_values": [
+                                {
+                                    "1": "{value:-2.5,open_point:false}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

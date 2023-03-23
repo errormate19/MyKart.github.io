@@ -1,0 +1,201 @@
+"direct_input_prompt": "<NumberLine data-props='{  \"min_scale\":  {{rounded_neg}},  \"max_scale\":  {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\": 2.75    }  ]}'></NumberLine >",
+                "direct_input_prompt_filled": "<NumberLine data-props='{  \"min_scale\": -3,  \"max_scale\": 3,  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\": 2.75    }  ]}</NumberLine >"
+
+
+
+
+
+
+
+gh1=>
+<NumberLine data-props='{  \"min_scale\": {{rounded_neg}},  \"max_scale\": {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 0    },    {      \"id\": 2,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\":{num_int}   }  ],  \"line_arrows\": [    {      \"start_point_id\": 1,      \"end_point_id\": 2,      \"label\": \"{num_val}\"    },    {      \"start_point_id\": 2,      \"end_point_id\": 1    }  ],  \"point_arrows\": null}'></NumberLine >\n
+
+
+
+gh2=>
+NumberLine data-props='{  \"min_scale\": {{rounded_neg}},  \"max_scale\": {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 0    },    {      \"id\": 2,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": {num_int}    },    {      \"id\": 3,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": false,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\":{num_int}   }  ],  \"line_arrows\": [    {      \"start_point_id\": 1,      \"end_point_id\": 2,      \"label\": \"{num_val}\"    },    {      \"start_point_id\": 2,      \"end_point_id\": 1    },    {      \"start_point_id\": 1,      \"end_point_id\": 3,      \"label\": \"{num_val}\"    },    {      \"start_point_id\": 3,      \"end_point_id\": 1    }  ],  \"point_arrows\": null}'></NumberLine >
+
+
+
+
+full ans=>
+<NumberLine data-props='{  \"min_scale\": {{rounded_neg}},  \"max_scale\": {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": 0    },    {      \"id\": 2,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": {num_int}    },    {      \"id\": 3,      \"show_indicator\": true,      \"highlight_indicator\": false,      \"indicator_size\": \"small\",      \"show_plot\": true,      \"show_point\": false,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\": {num_val}    }  ],  \"line_arrows\": [    {      \"start_point_id\": 1,      \"end_point_id\": 2,      \"label\": \"{num_val}\"    },    {      \"start_point_id\": 2,      \"end_point_id\": 1    },    {      \"start_point_id\": 1,      \"end_point_id\": 3,      \"label\": \"{num_val}\"    },    {      \"start_point_id\": 3,      \"end_point_id\": 1    }  ],  \"point_arrows\": null}'></NumberLine >\n
+
+
+
+
+
+"<NumberLine data-props='{  \"min_scale\": {{rounded_neg}},  \"max_scale\": {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"hash_marks_between_interval\": 3,  \"points\": [    {      \"id\": 1,      \"value\": {num_int},      \"show_point\": true,      \"point_color\": \"#377CF6\",      \"highlight_point\": true    },    {      \"id\": 2,      \"show_point\": true,      \"highlight_point\": true,      \"highlight_value\": false,      \"highlight_color\": \"black\",      \"value\":{num_int}    }  ]}'></NumberLine >"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "type": "info",
+    "library_step_id": "step2_preamble",
+    "problem_step_id": "2_preamble",
+    "next_steps": [
+        {
+            "condition": "True",
+            "next_step_id": "step2"
+        }
+    ],
+    "input_variables": [],
+    "derived_variables": [],
+    "user_input_variables": [],
+    "info": [
+        "{{utils.hyperlink('Opposite')}} numbers are the same distance from `0`, but on the other side."
+    ],
+
+    "preview":{
+        "preview_step":[
+        ],
+        "preview_answer":""
+    }
+},
+{
+    "type": "inputProcessor",
+    "library_step_id": "step2",
+    "problem_step_id": "2",
+    "next_steps": [],
+    "input_variables": [],
+    "derived_variables": [],
+    "user_input_variables": [{
+            "name": "1",
+            "type": "str"
+        }
+    ],
+    "input_prompt": "Graph the {{utils.hyperlink('opposite')}} of {{num_val}} on the number line.",
+    "input_request": "<NumberLine data-props='{  \"min_scale\": {{rounded_neg}},  \"max_scale\": {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\": {num_val}   }  ]}'></NumberLine >'></NumberLine >",
+    "direct_input": {
+        "direct_input_prompt": "<NumberLine data-props='{  \"min_scale\":  {{rounded_neg}},  \"max_scale\":  {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\": {num_val}    }  ]}'></NumberLine >",
+        "direct_input_prompt_filled": "<NumberLine data-props='{  \"min_scale\": {{rounded_neg}},  \"max_scale\": {{rounded}},  \"interval\": 1,  \"show_markers\": true,  \"is_interactive\": true,  \"interactive_color\": \"#377CF6\",  \"hash_marks_between_interval\": 3,  \"name\": \"1\",  \"points\": [    {      \"id\": 1,      \"is_interactive\": true,      \"point_interaction\": true,      \"show_point\": true,      \"line_interaction\": false,      \"open_point\": false    },    {      \"id\": 2,      \"show_point\": true,      \"value\":{num_val}  ]}</NumberLine >"
+    },
+    "preview": {
+        "preview_step": [
+            ""
+        ],
+        "preview_answer": ""
+    },
+    "general_hints": [{
+            "hint_code": "GH1",
+            "hint_content": [{
+                "condition": "True",
+                "value": [
+                    "The opposite of {{num_val}} is {{opp_sign}} and the same distance away from `0`."
+                ],
+                "example_value_condition": "True",
+                "example_values": [
+                    "hint"
+                ]
+            }]
+        },
+        {
+            "hint_code": "GH2",
+            "hint_content": [{
+                "condition": "True",
+                "value": [
+                    "The opposite of {{num_val}} is the number that is {{num_val}} units to the {{opp_side}} of `0`.\n<"
+                ],
+                "example_value_condition": "True",
+                "example_values": [{
+                    "1": "dummy"
+                }]
+            }]
+        }
+    ],
+    "full_answer": [
+        "The opposite of {{num_val}} is the number that is {{num_val}} units to the left of `0`."
+       
+    ],
+    "expected_answer": {
+        "1": {
+            "expected_value": "{value:-2.75,open_point:false}",
+            "condition": "{{ utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.75,'open_point':false}).replace('\"', '').replace(' ', '') ) or utils.string_match(input_dict['1'].replace(' ', '').replace('\"', ''), utils.json_dumps({'value':-2.75,'open_point':true}).replace('\"', '').replace(' ', '') ) }}"
+        }
+    },
+    "input_dependent_hints": [
+      
+    ]
+}
+]
+}
+
+
+{
+    "name": "is_mixed",
+    "type": "bool",
+    "expression": "{{utils.verifyMixedNumberFormat(num_val)}}"
+},
+{
+    "name": "is_fraction",
+    "type": "bool",
+    "expression": "{{utils.is_fraction(num_val)}}"
+},
+{
+    "name": "numer",
+    "type": "str",
+    "expression": "{% if is_fraction %}{{utils.get_numerator_from_fraction(num_val)}}{% endif %}"
+},
+{
+    "name": "denom",
+    "type": "str",
+    "expression": "{% if is_fraction %}{{utils.get_denominator_from_fraction(num_val)}}{% else %}1{% endif %}"
+},
+{
+    "name": "num_fraction",
+    "type": "str",
+    "expression":"{% if is_fraction %}{{utils.number(numer)/utils.number(denom)}}{% else %}{{num_val}}{% endif %}"
+},
+
+{
+    "name": "improper",
+    "type": "str",
+    "expression": "{% if is_mixed %}{{utils.getFractionFromMixedNumber(num_val)}}{% else %}{{num_val}}{% endif %}"
+},
+{
+    "name": "numerator",
+    "type": "str",
+    "expression": "{{utils.get_numerator_from_fraction(improper)}}"
+},
+{
+    "name": "denominator",
+    "type": "str",
+    "expression": "{% if is_mixed %}{{utils.get_denominator_from_fraction(improper)}}{% else %}1{% endif %}"
+},
+{
+    "name": "denominator_int",
+    "type": "number",
+    "expression": "{{utils.to_int(denominator)}}"
+},
+{
+    "name": "whole",
+    "type": "str",
+    "expression": "{% if is_mixed%}{{utils.math_floor(utils.eval(improper))}}{% endif %}"
+},
+{
+    "name": "fraction_num_val",
+    "type": "str",
+    "expression": "{% if is_mixed%}{{utils.modulo(numerator,denominator)}}{% endif %}"
+},
+{
+    "name": "num_value",
+    "type": "str",
+    "expression": "{% if is_mixed %}{{utils.sum_two_num(whole,fraction_num_val)}}{% endif %}"
+},
+{
+    "name": "num_int",
+    "type": "number",
+    "expression": "{% if is_mixed %}{{utils.number(num_value)}}{% else %}{{utils.number(num_fraction)}}{% endif %}"
+},
